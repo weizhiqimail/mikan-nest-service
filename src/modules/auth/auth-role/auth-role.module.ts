@@ -5,6 +5,6 @@ import { AuthRoleService } from './services/auth-role.service';
 
 @Module({
   controllers: [AuthRoleController],
-  providers: [AuthRoleService]
+  providers: [AuthRoleService],
 })
 export class AuthRoleModule {}

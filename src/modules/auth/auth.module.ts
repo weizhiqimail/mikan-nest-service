@@ -6,6 +6,6 @@ import { AuthRoleModule } from './auth-role/auth-role.module';
 @Module({
   controllers: [],
   providers: [],
-  imports: [AuthPermissionModule, AuthRoleModule]
+  imports: [AuthPermissionModule, AuthRoleModule],
 })
 export class AuthModule {}

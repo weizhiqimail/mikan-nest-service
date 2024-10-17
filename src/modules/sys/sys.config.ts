@@ -4,6 +4,6 @@ import { DbModule } from './db/db.module';
 import { MenuModule } from './menu/menu.module';
 
 @Module({
-  imports: [ClientModule, DbModule, MenuModule]
+  imports: [ClientModule, DbModule, MenuModule],
 })
 export class SysModule {}
