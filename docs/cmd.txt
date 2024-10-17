@@ -1,0 +1,17 @@
+nest generate module modules/media
+mkdir ./src/modules/media/controllers
+mkdir ./src/modules/media/services
+mkdir ./src/modules/media/types
+touch ./src/modules/media/media.config.ts
+nest generate controller modules/media --no-spec
+nest generate service modules/media --no-spec
+
+
+nest generate module modules/user/user-info
+mkdir ./src/modules/user/user-info/types
+touch ./src/modules/user/user-info/user-info.config.ts
+nest generate controller modules/user/user-info --no-spec
+nest generate service modules/user/user-info --no-spec
+
+mkdir ./src/modules/user/user-info/controllers
+mkdir ./src/modules/user/user-info/services
