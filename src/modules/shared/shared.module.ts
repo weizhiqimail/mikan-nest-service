@@ -6,12 +6,13 @@ import { LoggerService } from './services/logger.service';
 import { RedisService } from './services/redis.service';
 import { LoggerTransportService } from './services/logger-transport.service';
 import { MongodbConnectionService } from './services/mongodb-connection.service';
+import { mongooseModelList } from '@/mongodb/schema';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
-      imports: [ConfigModule, SharedModule],
+      imports: [ConfigModule, SharedModule, MongooseModule],
       useFactory: (
         configService: ConfigService,
         loggerService: LoggerService,
@@ -22,10 +23,13 @@ import { MongodbConnectionService } from './services/mongodb-connection.service'
         const uri = `mongodb://${MONGODB_HOST}:${MONGODB_PORT}/${MONGODB_DB_NAME}`;
         loggerService.log(`uri: ${uri}`, 'MongooseModule');
 
-        return { uri };
+        return {
+          uri,
+        };
       },
       inject: [ConfigService, LoggerService],
     }),
+    MongooseModule.forFeature(mongooseModelList),
   ],
   providers: [
     RedisService,
@@ -42,9 +46,13 @@ import { MongodbConnectionService } from './services/mongodb-connection.service'
   ],
 })
 export class SharedModule implements OnModuleInit {
-  constructor(private readonly loggerService: LoggerService) {}
+  constructor(
+    private readonly loggerService: LoggerService,
+    private readonly mongodbConnectionService: MongodbConnectionService,
+  ) {}
 
   onModuleInit(): any {
     this.loggerService.log('SharedModule Init', 'SharedModule');
+    // this.mongodbConnectionService.setupMongooseEventListeners();
   }
 }

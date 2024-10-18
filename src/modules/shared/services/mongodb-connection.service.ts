@@ -1,48 +1,41 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Connection } from 'mongoose';
 import { InjectConnection } from '@nestjs/mongoose';
 import { LoggerService } from './logger.service';
 
 @Injectable()
-export class MongodbConnectionService implements OnModuleInit {
+export class MongodbConnectionService {
   constructor(
     private readonly logger: LoggerService,
     @InjectConnection() private readonly connection: Connection,
-  ) {}
-
-  onModuleInit() {
+  ) {
     this.logger.log('onModuleInit', 'MongooseConnectionService');
     this.setupMongooseEventListeners();
   }
 
-  private setupMongooseEventListeners() {
+  setupMongooseEventListeners() {
+    this.connection.on('connecting', () => {
+      this.logger.log('Mongoose connecting.', 'Mongoose');
+    });
+
     this.connection.on('connected', () => {
-      this.logger.log('Mongoose connection established.', 'mongodb-connection');
+      this.logger.log('Mongoose connection established.', 'Mongoose');
     });
 
     this.connection.on('error', (err) => {
-      this.logger.error(
-        `Mongoose connection error: ${err}`,
-        'mongodb-connection',
-      );
+      this.logger.error(`Mongoose connection error: ${err}`, 'Mongoose');
     });
 
     this.connection.on('disconnected', () => {
-      this.logger.warn(
-        'Mongoose connection disconnected.',
-        'mongodb-connection',
-      );
+      this.logger.warn('Mongoose connection disconnected.', 'Mongoose');
     });
 
     this.connection.on('reconnected', () => {
-      this.logger.log(
-        'Mongoose connection reestablished.',
-        'mongodb-connection',
-      );
+      this.logger.log('Mongoose connection reestablished.', 'Mongoose');
     });
 
     this.connection.on('close', () => {
-      this.logger.log('Mongoose connection closed.', 'mongodb-connection');
+      this.logger.log('Mongoose connection closed.', 'Mongoose');
     });
   }
 }
