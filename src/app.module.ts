@@ -7,7 +7,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { MediaModule } from './modules/media/media.module';
 import { SysModule } from './modules/sys/sys.module';
 import { UserModule } from './modules/user/user.module';
-import { SharedModule } from './modules/shared/shared.module';
+import { SharedModule } from './shared/shared.module';
 
 import globalConfig from './config/global';
 import { HttpResponseFilter } from './filters/http-response.filter';

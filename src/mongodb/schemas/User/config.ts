@@ -1,5 +1,5 @@
-import { ISchemaConfig } from '../types';
-import { formatDateTime } from '../../../helper/date';
+import { formatDateTime } from '@/helper/date';
+import { ISchemaConfig } from '@/mongodb/schemas/types';
 
 export const UserSchemaConfig: ISchemaConfig = {
   moduleName: 'users',

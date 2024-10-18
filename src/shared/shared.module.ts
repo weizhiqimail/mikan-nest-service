@@ -2,11 +2,13 @@ import { Module, OnModuleInit } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
+import { mongooseModelList } from '@/mongodb/schemas';
+import { MongooseDaoModule } from './mongoose-dao/mongoose-dao.module';
+
 import { LoggerService } from './services/logger.service';
 import { RedisService } from './services/redis.service';
 import { LoggerTransportService } from './services/logger-transport.service';
 import { MongodbConnectionService } from './services/mongodb-connection.service';
-import { mongooseModelList } from '@/mongodb/schema';
 
 @Module({
   imports: [
@@ -30,6 +32,7 @@ import { mongooseModelList } from '@/mongodb/schema';
       inject: [ConfigService, LoggerService],
     }),
     MongooseModule.forFeature(mongooseModelList),
+    MongooseDaoModule,
   ],
   providers: [
     RedisService,
@@ -43,6 +46,7 @@ import { mongooseModelList } from '@/mongodb/schema';
     LoggerTransportService,
     LoggerService,
     MongodbConnectionService,
+    MongooseDaoModule,
   ],
 })
 export class SharedModule implements OnModuleInit {
