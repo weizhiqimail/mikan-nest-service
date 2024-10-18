@@ -3671,6 +3671,11 @@ micromatch@^4.0.0, micromatch@^4.0.4:
     braces "^3.0.3"
     picomatch "^2.3.1"
 
+mikan-utils@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.npmmirror.com/mikan-utils/-/mikan-utils-1.0.15.tgz#ef877282708527bf25ece54bf19614b94dc1398c"
+  integrity sha512-BonLwVNE9L2F01nuJjW6GxchLH970Xzaxp+LEj6kTFXSIfYWaX3oTJBn3EcP4TTLS9OW5omfg8xuZk5q3SlpHA==
+
 mime-db@1.52.0:
   version "1.52.0"
   resolved "https://registry.npmmirror.com/mime-db/-/mime-db-1.52.0.tgz#bbabcdc02859f4987301c856e3387ce5ec43bf70"

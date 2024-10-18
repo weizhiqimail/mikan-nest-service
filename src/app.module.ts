@@ -9,6 +9,8 @@ import { UserModule } from './modules/user/user.module';
 import { SharedModule } from './modules/shared/shared.module';
 
 import globalConfig from './config/global';
+import { APP_FILTER } from '@nestjs/core';
+import { HttpResponseFilter } from './filters/HttpResponseFilter';
 
 @Module({
   imports: [
@@ -24,6 +26,11 @@ import globalConfig from './config/global';
     SharedModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpResponseFilter,
+    },
+  ],
 })
 export class AppModule {}

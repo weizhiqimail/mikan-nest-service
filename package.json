@@ -52,6 +52,7 @@
     "helmet": "^8.0.0",
     "http-status-codes": "^2.3.0",
     "ioredis": "^5.4.1",
+    "mikan-utils": "^1.0.15",
     "pdf-lib": "^1.17.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",

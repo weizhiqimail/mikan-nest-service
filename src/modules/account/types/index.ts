@@ -3,12 +3,12 @@ export declare namespace AccountModuleTypes {
     email: string;
     password: string;
   }
-  
+
   interface ILoginAccountDto {
     email: string;
     password: string;
   }
-  
+
   interface IResetPasswordAccountDto {
     email: string;
     newPassword: string;
