@@ -134,8 +134,12 @@ export const ExceptionHttpStatusList: Array<ExceptionHttpStatusItem> = [
   },
 ];
 
-export const ExceptionHttpStatusMapByExceptionName: Record<string, ExceptionHttpStatusItem> = transformListToMap(ExceptionHttpStatusList, 'exceptionName');
+export const ExceptionHttpStatusMapByExceptionName: Record<
+  string,
+  ExceptionHttpStatusItem
+> = transformListToMap(ExceptionHttpStatusList, 'exceptionName');
 
-export const ExceptionHttpStatusMapByHttpStatusCode: Record<StatusCodes, ExceptionHttpStatusItem> = transformListToMap(ExceptionHttpStatusList, 'httpStatusCode');
-
-
+export const ExceptionHttpStatusMapByHttpStatusCode: Record<
+  StatusCodes,
+  ExceptionHttpStatusItem
+> = transformListToMap(ExceptionHttpStatusList, 'httpStatusCode');

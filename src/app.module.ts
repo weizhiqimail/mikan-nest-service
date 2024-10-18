@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { APP_FILTER } from '@nestjs/core';
 
 import { AccountModule } from './modules/account/account.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -9,8 +10,7 @@ import { UserModule } from './modules/user/user.module';
 import { SharedModule } from './modules/shared/shared.module';
 
 import globalConfig from './config/global';
-import { APP_FILTER } from '@nestjs/core';
-import { HttpResponseFilter } from './filters/HttpResponseFilter';
+import { HttpResponseFilter } from './filters/http-response.filter';
 
 @Module({
   imports: [
