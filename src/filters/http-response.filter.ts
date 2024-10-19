@@ -15,7 +15,7 @@ import { UnknownException } from '@/exceptions/unknown.exception';
 import { IErrorResponse } from '@/types/common';
 import { formatDateTime } from '@/helper/date';
 
-@Catch()
+@Catch(HttpException)
 export class HttpResponseFilter implements ExceptionFilter {
   private readonly unknownExceptionItem: ExceptionHttpStatusItem;
 
@@ -29,7 +29,7 @@ export class HttpResponseFilter implements ExceptionFilter {
     };
   }
 
-  catch(exception: unknown, host: ArgumentsHost) {
+  catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest();
@@ -41,12 +41,25 @@ export class HttpResponseFilter implements ExceptionFilter {
       exceptionHttpStatusItem = this.unknownExceptionItem;
     }
 
+    let errorMsgList = [exceptionHttpStatusItem.customMessage];
+
+    // @ts-ignore
+    const exceptionResponse = exception.response;
+
+    if (exceptionResponse) {
+      if (exceptionResponse.type === 'BadRequestException') {
+        errorMsgList = exceptionResponse.errorMsgList;
+      } else {
+        errorMsgList = [exceptionResponse.message];
+      }
+    }
+
     const errorResponse: IErrorResponse = {
       method: request.method,
       path: request.url,
       time: formatDateTime(new Date(), 'YYYY-MM-DD HH:mm:ss:SSS'),
       statusCode: exceptionHttpStatusItem.httpStatusCode,
-      errorMsgList: [exceptionHttpStatusItem.customMessage],
+      errorMsgList,
       exceptionName: exceptionHttpStatusItem.exceptionName,
     };
     response.status(errorResponse.statusCode).json(errorResponse);

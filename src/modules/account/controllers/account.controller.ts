@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
 
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
@@ -21,7 +21,9 @@ export class AccountController {
 
   @ApiOperation({ summary: '用户退出登录' })
   @Post('/logout')
-  async accountLogout() {}
+  async accountLogout() {
+    throw new BadRequestException('退出登录失败');
+  }
 
   @ApiOperation({ summary: '重置密码' })
   @Post('/reset-password')
