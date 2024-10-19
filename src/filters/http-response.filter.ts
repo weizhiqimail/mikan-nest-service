@@ -5,12 +5,15 @@ import {
   HttpException,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
+
 import {
   ExceptionHttpStatusItem,
   ExceptionHttpStatusMapByExceptionName,
-} from '../config/http-response-code';
-import { StatusCodes } from 'http-status-codes';
-import { UnknownException } from '../exceptions/unknown.exception';
+} from '@/config/http-response-code';
+import { UnknownException } from '@/exceptions/unknown.exception';
+import { IErrorResponse } from '@/types/common';
+import { formatDateTime } from '@/helper/date';
 
 @Catch()
 export class HttpResponseFilter implements ExceptionFilter {
@@ -38,14 +41,15 @@ export class HttpResponseFilter implements ExceptionFilter {
       exceptionHttpStatusItem = this.unknownExceptionItem;
     }
 
-    const errorResponse = {
+    const errorResponse: IErrorResponse = {
       method: request.method,
       path: request.url,
-      time: new Date().toISOString(),
-      exception,
-      httpStatus: exceptionHttpStatusItem.httpStatusCode,
+      time: formatDateTime(new Date(), 'YYYY-MM-DD HH:mm:ss:SSS'),
+      statusCode: exceptionHttpStatusItem.httpStatusCode,
+      errorMsgList: [exceptionHttpStatusItem.customMessage],
+      exceptionName: exceptionHttpStatusItem.exceptionName,
     };
-    response.status(errorResponse.httpStatus).json(errorResponse);
+    response.status(errorResponse.statusCode).json(errorResponse);
   }
 
   processException(exception: HttpException): ExceptionHttpStatusItem {

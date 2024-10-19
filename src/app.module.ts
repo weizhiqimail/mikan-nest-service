@@ -1,16 +1,18 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
-import { AccountModule } from './modules/account/account.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { MediaModule } from './modules/media/media.module';
-import { SysModule } from './modules/sys/sys.module';
-import { UserModule } from './modules/user/user.module';
-import { SharedModule } from './shared/shared.module';
+import globalConfig from '@/config/global';
 
-import globalConfig from './config/global';
-import { HttpResponseFilter } from './filters/http-response.filter';
+import { TransformInterceptor } from '@/interceptors/http-transform.interceptor';
+import { HttpResponseFilter } from '@/filters/http-response.filter';
+
+import { AccountModule } from '@/modules/account/account.module';
+import { AuthModule } from '@/modules/auth/auth.module';
+import { MediaModule } from '@/modules/media/media.module';
+import { SysModule } from '@/modules/sys/sys.config';
+import { UserModule } from '@/modules/user/user.module';
+import { SharedModule } from '@/shared/shared.module';
 
 @Module({
   imports: [
@@ -25,12 +27,15 @@ import { HttpResponseFilter } from './filters/http-response.filter';
     UserModule,
     SharedModule,
   ],
-  controllers: [],
   providers: [
     {
       provide: APP_FILTER,
       useClass: HttpResponseFilter,
     },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
+    }
   ],
 })
 export class AppModule {}

@@ -4,23 +4,35 @@ import { MomentInput } from 'moment/moment';
 /**
  * 格式化日期
  * @param date
+ * @param format
  */
-export function formatDate(date: MomentInput = new Date()) {
-  return moment(date).format('YYYY-MM-DD');
+export function formatDate(
+  date: MomentInput = new Date(),
+  format = 'YYYY-MM-DD',
+) {
+  return moment(date).format(format);
 }
 
 /**
  * 格式化时间
  * @param date
+ * @param format
  */
-export function formatTime(date: MomentInput = new Date()) {
-  return moment(date).format('HH:mm:ss');
+export function formatTime(
+  date: MomentInput = new Date(),
+  format = 'HH:mm:ss',
+) {
+  return moment(date).format(format);
 }
 
 /**
  * 格式化日期时间
  * @param date
+ * @param format
  */
-export function formatDateTime(date: MomentInput = new Date()) {
-  return moment(date).format('YYYY-MM-DD HH:mm:ss');
+export function formatDateTime(
+  date: MomentInput = new Date(),
+  format = 'YYYY-MM-DD HH:mm:ss',
+) {
+  return moment(date).format(format);
 }
