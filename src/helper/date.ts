@@ -36,3 +36,15 @@ export function formatDateTime(
 ) {
   return moment(date).format(format);
 }
+
+/**
+ * 格式化日期时间
+ * @param date
+ * @param format
+ */
+export function formatDateTimeWithMilliseconds(
+  date: MomentInput = new Date(),
+  format = 'YYYY-MM-DD HH:mm:ss:SSS',
+) {
+  return moment(date).format(format);
+}

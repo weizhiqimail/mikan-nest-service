@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { AccountLoginDto } from '@/modules/account/controllers/account.controller.dto';
 import { AccountRouteService } from '@/modules/account/services/account.route.service';
 
-@ApiTags('用户账号模块')
+@ApiTags('账号模块')
 @Controller(`/api/v1/account`)
 export class AccountController {
   constructor(

@@ -1,5 +1,5 @@
 import { Controller, Post, Get, Query, Body } from '@nestjs/common';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { UserInfoService } from '@/modules/user/user-info/services/user-info.service';
 import {
@@ -9,6 +9,7 @@ import {
   UpdateUserInfoDto,
 } from '@/modules/user/user-info/controllers/user-info.controller.dto';
 
+@ApiTags('用户信息模块')
 @Controller('/api/v1/user/userInfo')
 export class UserInfoController {
   constructor(private readonly userInfoService: UserInfoService) {}

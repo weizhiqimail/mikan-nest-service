@@ -1,16 +1,29 @@
-import { ConsoleLogger, Injectable } from '@nestjs/common';
+import {
+  LoggerService as InnerLoggerService,
+  Injectable,
+} from '@nestjs/common';
 import * as winston from 'winston';
 import 'winston-daily-rotate-file';
+import WinstonTransport from 'winston-transport';
 
-import { LoggerTransportService } from './logger-transport.service';
+class LoggerTransportService extends WinstonTransport {
+  constructor() {
+    super();
+  }
+
+  log(info: any, next: () => void): any {
+    setImmediate(() => {
+      this.emit('logged', info);
+    });
+    next();
+  }
+}
 
 @Injectable()
-export class LoggerService extends ConsoleLogger {
+export class LoggerService implements InnerLoggerService {
   private logger: winston.Logger;
 
   constructor() {
-    super();
-
     this.logger = winston.createLogger({
       levels: winston.config.npm.levels,
       format: winston.format.combine(
@@ -19,7 +32,7 @@ export class LoggerService extends ConsoleLogger {
         winston.format.json(),
       ),
       transports: [
-        // new winston.transports.Console(),
+        new winston.transports.Console(),
         new winston.transports.DailyRotateFile({
           dirname: 'logs',
           filename: 'application-%DATE%.log',
@@ -34,27 +47,22 @@ export class LoggerService extends ConsoleLogger {
   }
 
   log(message: string, context?: string) {
-    super.log(message, context);
     this.logger.info({ message, context });
   }
 
   error(message: string, context?: string) {
-    super.error(message, context);
     this.logger.error({ message, context });
   }
 
   warn(message: string, context?: string) {
-    super.warn(message, context);
     this.logger.warn({ message, context });
   }
 
   debug(message: string, context?: string) {
-    super.debug(message, context);
     this.logger.debug({ message, context });
   }
 
   verbose(message: string, context?: string) {
-    super.verbose(message, context);
     this.logger.verbose({ message, context });
   }
 }

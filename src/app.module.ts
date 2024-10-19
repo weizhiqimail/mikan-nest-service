@@ -14,6 +14,7 @@ import { MediaModule } from '@/modules/media/media.module';
 import { SysModule } from '@/modules/sys/sys.config';
 import { UserModule } from '@/modules/user/user.module';
 import { SharedModule } from '@/shared/shared.module';
+import { LoggerInterceptor } from '@/interceptors/logger.interceptor';
 
 @Module({
   imports: [
@@ -36,6 +37,10 @@ import { SharedModule } from '@/shared/shared.module';
     {
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggerInterceptor,
     },
     {
       provide: APP_PIPE,
