@@ -1,14 +1,11 @@
 import { Schema, model } from 'mongoose';
 
-import {
-  ISysTaskStatus,
-  TaskModelTypes,
-} from '@/mongodb/schemas/SysTask/types';
-import { UserSchemaConfig } from '@/mongodb/schemas/User';
+import { ISysTaskStatus, TaskModelTypes } from '@/mongodb/schemas/Task/types';
 import {
   formatTaskModelData,
   TaskSchemaConfig,
-} from '@/mongodb/schemas/SysTask/config';
+} from '@/mongodb/schemas/Task/config';
+import { UserSchemaConfig } from '@/mongodb/schemas/User/config';
 
 export const TaskSchema = new Schema(
   {

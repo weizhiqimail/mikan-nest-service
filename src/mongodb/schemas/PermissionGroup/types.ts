@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { PermissionType } from '@/database/schemas/SinglePermission/types';
+import { ISinglePermissionType } from '@/mongodb/schemas/SinglePermission/types';
 
 export declare namespace PermissionGroupModelTypes {
   // 权限组
@@ -7,7 +7,7 @@ export declare namespace PermissionGroupModelTypes {
     name: string;
     code: string;
     description?: string;
-    type?: PermissionType;
+    type?: ISinglePermissionType;
     enable?: boolean;
     permissionGroup?: string[];
     singlePermission?: string[];
@@ -22,7 +22,7 @@ export declare namespace PermissionGroupModelTypes {
     name: string;
     code: string;
     description?: string;
-    type: PermissionType;
+    type: ISinglePermissionType;
     enable?: boolean;
     permissionGroup?: string[];
     singlePermission?: string[];
@@ -34,7 +34,7 @@ export declare namespace PermissionGroupModelTypes {
     name: string;
     code: string;
     description?: string;
-    type?: PermissionType;
+    type?: ISinglePermissionType;
     enable?: boolean;
     permissionGroup?: string[];
     singlePermission?: string[];
@@ -45,7 +45,7 @@ export declare namespace PermissionGroupModelTypes {
     name: string;
     code: string;
     description?: string;
-    type?: PermissionType;
+    type?: ISinglePermissionType;
     enable?: boolean;
   }
 }

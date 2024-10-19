@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 
 import { AppModule } from './app.module';
 import { useMiddlewares } from './middlewares';
-import { LoggerService } from './shared/services/logger.service';
+import { LoggerService } from './shared/common-shared/services/logger.service';
 
 async function bootstrap() {
   return new Promise(async (resolve, reject) => {

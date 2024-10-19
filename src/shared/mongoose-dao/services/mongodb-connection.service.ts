@@ -1,7 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, LoggerService } from '@nestjs/common';
 import { Connection } from 'mongoose';
 import { InjectConnection } from '@nestjs/mongoose';
-import { LoggerService } from './logger.service';
 
 @Injectable()
 export class MongodbConnectionService {

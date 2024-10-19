@@ -5,7 +5,7 @@ import {
   MenuSchemaConfig,
 } from '@/mongodb/schemas/Menu/config';
 
-const MenuSchema = new Schema<MenuModelTypes.Model>(
+export const MenuSchema = new Schema<MenuModelTypes.Model>(
   {
     name: { type: String, required: true },
     code: { type: String, required: true, unique: true },

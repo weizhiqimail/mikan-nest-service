@@ -8,7 +8,7 @@ import { PermissionGroupSchemaConfig } from '@/mongodb/schemas/PermissionGroup/c
 import { SinglePermissionSchemaConfig } from '@/mongodb/schemas/SinglePermission/config';
 import { UserPermissionModelTypes } from '@/mongodb/schemas/UserPermission/types';
 
-const UserPermissionSchema = new Schema(
+export const UserPermissionSchema = new Schema(
   {
     name: { type: String, required: true },
     code: { type: String, required: true },

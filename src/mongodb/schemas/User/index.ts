@@ -1,20 +1,14 @@
 import { Schema, model } from 'mongoose';
-import { formatDateTime } from '@/helper/date';
+
 import {
   IUserGenderEnum,
   IUserStatusEnum,
   UserModelTypes,
 } from '@/mongodb/schemas/User/types';
-import { UserSchemaConfig } from '@/mongodb/schemas/User/config';
-
-export function formatUserModelData(ret: Record<any, any>) {
-  ret.createdAt = formatDateTime(ret.createdAt);
-  ret.updatedAt = formatDateTime(ret.updatedAt);
-  ret.id = ret._id.toString();
-  delete ret.__v;
-  delete ret._id;
-  return ret;
-}
+import {
+  formatUserModelData,
+  UserSchemaConfig,
+} from '@/mongodb/schemas/User/config';
 
 export const UserSchema = new Schema(
   {

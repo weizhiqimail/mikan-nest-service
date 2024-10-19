@@ -3,13 +3,13 @@ import { Schema, model } from 'mongoose';
 import {
   ClientModelTypes,
   IClientStatus,
-} from '@/database/schemas/Client/types';
+} from '@/mongodb/schemas/Client/types';
 import {
   ClientSchemaConfig,
   formatClientModelData,
-} from '@/database/schemas/Client/config';
+} from '@/mongodb/schemas/Client/config';
 
-const ClientSchema = new Schema<ClientModelTypes.Model>(
+export const ClientSchema = new Schema<ClientModelTypes.Model>(
   {
     name: { type: String, required: true },
     code: { type: String, required: true, unique: true },

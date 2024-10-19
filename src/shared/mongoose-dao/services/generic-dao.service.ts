@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
-import { Document } from 'mongoose';
+import { Model, Document } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class GenericDaoService<T extends Document> {
-  constructor(private readonly model: Model<T>) {}
+  constructor(
+    @InjectModel('')
+    private readonly model: Model<T>,
+  ) {}
 
   async queryList(): Promise<T[]> {
     return this.model.find().exec();
