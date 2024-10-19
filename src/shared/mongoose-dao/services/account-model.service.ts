@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 
 import { CommonDaoService } from '@/mongodb/dao/CommonDaoService';
-import UserModel from '@/mongodb/schemas/User';
+import AccountModel from '@/mongodb/schemas/Account';
 
 @Injectable()
-export class UserModelService extends CommonDaoService {
+export class AccountModelService extends CommonDaoService {
   constructor() {
-    super(UserModel);
+    super(AccountModel);
   }
 }

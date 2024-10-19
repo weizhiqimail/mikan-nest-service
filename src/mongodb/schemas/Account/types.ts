@@ -5,7 +5,7 @@ export enum IAccountStatusEnum {
 }
 
 export declare namespace AccountModelTypes {
-  interface IAccountModel extends Document {
+  interface Model extends Document {
     id: string;
     userId?: string;
     password?: string;

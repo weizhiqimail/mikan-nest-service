@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as WinstonTransport from 'winston-transport';
+import WinstonTransport from 'winston-transport';
 import { RedisService } from './redis.service';
 
 @Injectable()

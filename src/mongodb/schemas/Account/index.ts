@@ -31,7 +31,7 @@ AccountSchema.set('toObject', {
   },
 });
 
-const AccountModel = model<AccountModelTypes.IAccountModel>(
+const AccountModel = model<AccountModelTypes.Model>(
   AccountSchemaConfig.moduleName,
   AccountSchema,
 );
