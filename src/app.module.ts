@@ -35,7 +35,7 @@ import { SharedModule } from '@/shared/shared.module';
     {
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,
-    }
+    },
   ],
 })
 export class AppModule {}
