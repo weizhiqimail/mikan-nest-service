@@ -49,7 +49,6 @@ export function formatDateTimeWithMilliseconds(
   return moment(date).format(format);
 }
 
-
 export function isValidDate(date: any) {
   const dateStr = new Date(date).toString();
   return dateStr !== 'Invalid Date';

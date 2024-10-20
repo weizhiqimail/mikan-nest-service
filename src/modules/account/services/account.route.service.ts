@@ -1,6 +1,9 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 
-import { AccountLoginDto, AccountResetPasswordDto } from '@/modules/account/controllers/account.controller.dto';
+import {
+  AccountLoginDto,
+  AccountResetPasswordDto,
+} from '@/modules/account/controllers/account.controller.dto';
 import { AccountModelService } from '@/shared/MongoDB/services/account/account-model.service';
 import { UserModelBizService } from '@/shared/MongoDB/services/user/user-model-biz.service';
 import { AccountCommonService } from '@/modules/account/services/account.common.service';
@@ -48,34 +51,29 @@ export class AccountRouteService {
 
     userInfo.accountId = accountData.id;
 
-    await this.accountCommonService.saveAccountUserToken(
-      userInfo.id,
-      userInfo,
-    );
-    
-    return { token: userInfo.id }
-    
+    await this.accountCommonService.saveAccountUserToken(userInfo.id, userInfo);
+
+    return { token: userInfo.id };
   }
-  
+
   async accountLogout(authToken: string) {
     return this.accountCommonService.deleteAccountUserToken(authToken);
   }
-  
+
   async accountResetPassword(dto: AccountResetPasswordDto) {
     const userExistResult = await this.userModelBizService.queryUserByEmail(
       dto.email,
     );
-    
+
     const userInfo = userExistResult.data;
-    
+
     if (!userInfo) {
       throw new BadRequestException('邮箱不存在');
     }
-   
-    return this.accountCommonService.setUserPassword(userInfo.id, dto.password1);
-  
+
+    return this.accountCommonService.setUserPassword(
+      userInfo.id,
+      dto.password1,
+    );
   }
-  
-  
-  
 }

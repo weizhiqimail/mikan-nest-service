@@ -1,0 +1,29 @@
+import { Document, Types } from 'mongoose';
+
+export enum ILogLevelEnum {
+  INFO = 'info',
+  WARN = 'warn',
+  ERROR = 'error',
+  DEBUG = 'debug',
+}
+
+export declare namespace RequestLogModelTypes {
+  interface Model extends Document {
+    requestId: string;
+    timestamp: Date;
+    level: ILogLevelEnum;
+    headers?: string;
+    query?: string;
+    body?: string;
+    params?: string;
+    responseData?: string;
+    method?: string;
+    url?: string;
+    statusCode?: number;
+    ip?: string;
+    userAgent?: string;
+    stack?: string;
+    duration?: number;
+    additionalInfo?: any;
+  }
+}

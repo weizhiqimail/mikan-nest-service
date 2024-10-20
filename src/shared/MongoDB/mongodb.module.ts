@@ -1,16 +1,16 @@
 import * as path from 'path';
 import { globSync } from 'glob';
 import mongoose from 'mongoose';
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { CommonSharedModule } from '@/shared/common-shared/common-shared.module';
-import { LoggerService } from '@/shared/common-shared/services/logger.service';
 
 import { AccountModelService } from '@/shared/MongoDB/services/account/account-model.service';
 import { AccountModelBizService } from '@/shared/MongoDB/services/account/account-model-biz.service';
 import { UserModelService } from '@/shared/MongoDB/services/user/user-model.service';
 import { UserModelBizService } from '@/shared/MongoDB/services/user/user-model-biz.service';
+import { RequestLogService } from '@/shared/MongoDB/services/request-log/request-log.service';
 
 const serviceList = [
   AccountModelService,
@@ -18,6 +18,8 @@ const serviceList = [
 
   UserModelService,
   UserModelBizService,
+
+  RequestLogService,
 ];
 
 @Module({
@@ -27,7 +29,6 @@ const serviceList = [
 })
 export class MongodbModule implements OnModuleInit {
   constructor(
-    private readonly loggerService: LoggerService,
     private readonly configService: ConfigService,
   ) {}
 
@@ -54,19 +55,19 @@ export class MongodbModule implements OnModuleInit {
       await mongoose.connect(uri, {
         maxPoolSize: 10,
       });
-      this.loggerService.log(`MongoDB 数据库连接成功`, 'MongoDB');
+      Logger.log(`MongoDB 数据库连接成功`, 'MongoDB');
     } catch (error) {
-      this.loggerService.log(`MongoDB 数据库连接失败`, 'MongoDB');
+      Logger.log(`MongoDB 数据库连接失败`, 'MongoDB');
       console.log(error);
     }
 
     mongoose.connection.on('error', (error) => {
-      this.loggerService.log(`MongoDB 数据库连接发生错误`, 'MongoDB');
+      Logger.log(`MongoDB 数据库连接发生错误`, 'MongoDB');
       console.log(error);
     });
 
     mongoose.connection.on('disconnected', () => {
-      this.loggerService.log(`MongoDB 数据库断开连接`, 'MongoDB');
+      Logger.log(`MongoDB 数据库断开连接`, 'MongoDB');
     });
   }
 }

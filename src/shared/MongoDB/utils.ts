@@ -34,6 +34,7 @@ export function daoPromisify<T>(
         });
       })
       .catch((error) => {
+        console.log('error', error);
         return resolve({ success: false, error });
       });
   });

@@ -7,7 +7,7 @@ export function isValidNumber(value: any) {
   if (Number.isNaN(v)) {
     return false;
   }
-  
+
   if (v >= Number.MIN_SAFE_INTEGER && v <= Number.MAX_SAFE_INTEGER) {
     return true;
   }

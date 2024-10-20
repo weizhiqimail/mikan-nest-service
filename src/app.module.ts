@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 
@@ -14,7 +14,7 @@ import { MediaModule } from '@/modules/media/media.module';
 import { SysModule } from '@/modules/sys/sys.config';
 import { UserModule } from '@/modules/user/user.module';
 import { SharedModule } from '@/shared/shared.module';
-import { LoggerInterceptor } from '@/interceptors/logger.interceptor';
+import { RequestLoggerMiddleware } from '@/middlewares/request-logger.middleware';
 
 @Module({
   imports: [
@@ -38,14 +38,18 @@ import { LoggerInterceptor } from '@/interceptors/logger.interceptor';
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,
     },
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: LoggerInterceptor,
-    },
+    // {
+    //   provide: APP_INTERCEPTOR,
+    //   useClass: LoggerInterceptor,
+    // },
     {
       provide: APP_PIPE,
       useClass: RequestValidationPipe,
     },
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer): any {
+    consumer.apply(RequestLoggerMiddleware).forRoutes('*');
+  }
+}

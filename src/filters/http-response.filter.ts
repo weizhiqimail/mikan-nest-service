@@ -1,16 +1,8 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-  HttpException,
-} from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException } from '@nestjs/common';
 import { Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-import {
-  ExceptionHttpStatusItem,
-  ExceptionHttpStatusMapByExceptionName,
-} from '@/config/http-response-code';
+import { ExceptionHttpStatusItem, ExceptionHttpStatusMapByExceptionName } from '@/config/http-response-code';
 import { UnknownException } from '@/exceptions/unknown.exception';
 import { IErrorResponse } from '@/types/common';
 import { formatDateTime } from '@/helper/date';

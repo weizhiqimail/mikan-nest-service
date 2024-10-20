@@ -32,6 +32,11 @@ import UserPermissionModel, {
   UserPermissionSchema,
 } from '@/shared/MongoDB/schemas/UserPermission';
 
+import { RequestLogSchemaConfig } from '@/shared/MongoDB/schemas/RequestLog/config';
+import RequestLogModel, {
+  RequestLogSchema,
+} from '@/shared/MongoDB/schemas/RequestLog';
+
 export interface ISchemaItem<T = any> {
   config: ISchemaConfig;
   schema: Schema;
@@ -77,5 +82,10 @@ export const schemaList: Array<ISchemaItem> = [
     config: UserPermissionSchemaConfig,
     schema: UserPermissionSchema,
     model: UserPermissionModel,
+  },
+  {
+    config: RequestLogSchemaConfig,
+    schema: RequestLogSchema,
+    model: RequestLogModel,
   },
 ];

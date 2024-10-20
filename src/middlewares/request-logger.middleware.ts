@@ -1,24 +1,33 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 
-import { LoggerService } from '@/shared/common-shared/services/logger.service';
-import { formatDateTimeWithMilliseconds } from '@/helper/date';
+import { generateUUID } from '@/helper/utils';
+import { RequestLogService } from '@/shared/MongoDB/services/request-log/request-log.service';
 
 @Injectable()
 export class RequestLoggerMiddleware implements NestMiddleware {
-  constructor(private readonly logger: LoggerService) {}
+  constructor(private readonly requestLogService: RequestLogService) {}
 
-  use(req: Request, res: Response, next: NextFunction) {
-    this.writeLog(req);
+  async use(req: Request, res: Response, next: NextFunction) {
+    const startTime = Date.now();
+    const originalJson = res.json.bind(res);
+    const requestId = generateUUID(); // 生成唯一的 requestId
+    
+    res.json = (body: any) => {
+      res.locals.responseData = body; // 将 responseData 存储在 res.locals 中
+      return originalJson(body); // 调用原始的 res.json 方法继续处理
+    };
+
+    req['requestId'] = requestId;
+    req['startTime'] = startTime;
+    res.setHeader('X-Request-Id', requestId);
+
+    // 监听响应完成事件
+    res.on('finish', async () => {
+      const duration = Date.now() - startTime;
+      this.requestLogService.createHttpRequestLog(req, res, { duration });
+    });
+
     next();
-  }
-
-  writeLog(req: Request) {
-    const { method, path, headers, query, body } = req;
-    const time = formatDateTimeWithMilliseconds();
-    this.logger.log(`[${time}] ${method} ${path}`);
-    this.logger.log(`Headers: ${JSON.stringify(headers)}`);
-    this.logger.log(`Query: ${JSON.stringify(query)}`);
-    this.logger.log(`Body: ${JSON.stringify(body)}`);
   }
 }
