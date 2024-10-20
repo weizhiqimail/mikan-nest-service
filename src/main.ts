@@ -7,8 +7,7 @@ import { useMiddlewares } from '@/middlewares';
 
 async function bootstrap() {
   return new Promise(async (resolve, reject) => {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    });
+    const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
 
     app.enableCors();
 

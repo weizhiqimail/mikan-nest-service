@@ -5,19 +5,22 @@ import { CommonDaoService } from '@/shared/MongoDB/services/common-dao.service';
 import RequestLogModel from '@/shared/MongoDB/schemas/RequestLog';
 import { ILogLevelEnum } from '@/shared/MongoDB/schemas/RequestLog/types';
 
-
 interface CreateHttpRequestLogOptions {
   duration: number;
   level?: ILogLevelEnum;
 }
 
 @Injectable()
-export class RequestLogService extends CommonDaoService {
+export class DbRequestLogService extends CommonDaoService {
   constructor() {
     super(RequestLogModel);
   }
 
-  async createHttpRequestLog(req: Request, res: Response, options: CreateHttpRequestLogOptions) {
+  async createHttpRequestLog(
+    req: Request,
+    res: Response,
+    options: CreateHttpRequestLogOptions,
+  ) {
     const requestId = res.getHeader('X-Request-Id');
     const duration = options.duration || null;
 
@@ -26,13 +29,11 @@ export class RequestLogService extends CommonDaoService {
       requestId: requestId,
       timestamp: new Date(),
       level: options.level || ILogLevelEnum.INFO,
-      headers: JSON.stringify(req.headers),
-      query: JSON.stringify(req.query),
-      body: JSON.stringify(req.body),
-      params: JSON.stringify(req.params),
-      responseData: res.locals.responseData
-        ? JSON.stringify(res.locals.responseData)
-        : '',
+      headers: req.headers,
+      query: req.query,
+      body: req.body,
+      params: req.params,
+      responseData: res.locals.responseData,
       method: req.method,
       url: req.url,
       statusCode: res.statusCode,

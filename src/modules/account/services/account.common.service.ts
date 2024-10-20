@@ -3,15 +3,15 @@ import crypto from 'crypto';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { AccountConfig } from '@/modules/account/account.config';
 import { RedisService } from '@/shared/common-shared/services/redis.service';
-import { UserModelService } from '@/shared/MongoDB/services/user/user-model.service';
-import { AccountModelService } from '@/shared/MongoDB/services/account/account-model.service';
+import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model.service';
+import { DbAccountModelService } from '@/shared/MongoDB/services/account/db-account-model.service';
 
 @Injectable()
 export class AccountCommonService {
   constructor(
     private readonly redisService: RedisService,
-    private readonly userModelService: UserModelService,
-    private readonly accountModelService: AccountModelService,
+    private readonly userModelService: DbUserModelService,
+    private readonly accountModelService: DbAccountModelService,
   ) {}
 
   // 生成 account 存储的 key

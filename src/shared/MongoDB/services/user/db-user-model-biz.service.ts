@@ -4,7 +4,7 @@ import { CommonDaoService } from '@/shared/MongoDB/services/common-dao.service';
 import UserModel from '@/shared/MongoDB/schemas/User';
 
 @Injectable()
-export class UserModelBizService extends CommonDaoService {
+export class DbUserModelBizService extends CommonDaoService {
   constructor() {
     super(UserModel);
   }

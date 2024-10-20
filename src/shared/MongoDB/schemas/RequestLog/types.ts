@@ -12,11 +12,11 @@ export declare namespace RequestLogModelTypes {
     requestId: string;
     timestamp: Date;
     level: ILogLevelEnum;
-    headers?: string;
-    query?: string;
-    body?: string;
-    params?: string;
-    responseData?: string;
+    headers?: any;
+    query?: any;
+    body?: any;
+    params?: any;
+    responseData?: any;
     method?: string;
     url?: string;
     statusCode?: number;

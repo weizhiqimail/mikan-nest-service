@@ -4,15 +4,15 @@ import {
   AccountLoginDto,
   AccountResetPasswordDto,
 } from '@/modules/account/controllers/account.controller.dto';
-import { AccountModelService } from '@/shared/MongoDB/services/account/account-model.service';
-import { UserModelBizService } from '@/shared/MongoDB/services/user/user-model-biz.service';
+import { DbAccountModelService } from '@/shared/MongoDB/services/account/db-account-model.service';
+import { DbUserModelBizService } from '@/shared/MongoDB/services/user/db-user-model-biz.service';
 import { AccountCommonService } from '@/modules/account/services/account.common.service';
 
 @Injectable()
 export class AccountRouteService {
   constructor(
-    private readonly accountModelService: AccountModelService,
-    private readonly userModelBizService: UserModelBizService,
+    private readonly accountModelService: DbAccountModelService,
+    private readonly userModelBizService: DbUserModelBizService,
     private readonly accountCommonService: AccountCommonService,
   ) {}
 

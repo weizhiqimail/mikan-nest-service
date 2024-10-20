@@ -2,6 +2,7 @@ import { Model } from 'mongoose';
 
 import { CommonPromiseRes } from '@/types/http';
 import { daoPromisify, daoPromisifyListTotal } from '@/shared/MongoDB/utils';
+import { CommonDaoQueryListOptions } from '@/shared/MongoDB/services/types';
 
 export class CommonDaoService {
   constructor(private readonly model: typeof Model) {
@@ -12,12 +13,31 @@ export class CommonDaoService {
    * 通用的查询方法
    */
 
-  async queryList(params: Record<any, any> = {}): Promise<CommonPromiseRes> {
-    const { pageNum = 1, pageSize = 10, ...restQueryParams } = params;
+  async queryList(
+    options: CommonDaoQueryListOptions,
+  ): Promise<CommonPromiseRes> {
+    const {
+      queryParams = {},
+      pageNum = 1,
+      pageSize = 20,
+      sortField = '',
+      sortType = -1,
+    } = options;
+
+    const $sort: Record<any, any> = {};
+    if (sortField) {
+      $sort[sortField] = sortType;
+      if (sortType === 1 || sortType === -1) {
+        $sort[sortType] = sortType;
+      } else {
+        $sort[sortType] = -1;
+      }
+    }
+
     return daoPromisifyListTotal(
       this.model.aggregate([
-        { $match: restQueryParams },
-        { $sort: { updatedAt: -1 } },
+        { $match: queryParams },
+        { $sort },
         {
           $facet: {
             total: [{ $count: 'count' }],

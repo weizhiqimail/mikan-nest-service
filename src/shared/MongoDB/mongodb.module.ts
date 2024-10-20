@@ -6,20 +6,20 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { CommonSharedModule } from '@/shared/common-shared/common-shared.module';
 
-import { AccountModelService } from '@/shared/MongoDB/services/account/account-model.service';
-import { AccountModelBizService } from '@/shared/MongoDB/services/account/account-model-biz.service';
-import { UserModelService } from '@/shared/MongoDB/services/user/user-model.service';
-import { UserModelBizService } from '@/shared/MongoDB/services/user/user-model-biz.service';
-import { RequestLogService } from '@/shared/MongoDB/services/request-log/request-log.service';
+import { DbAccountModelService } from '@/shared/MongoDB/services/account/db-account-model.service';
+import { DbAccountModelBizService } from '@/shared/MongoDB/services/account/db-account-model-biz.service';
+import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model.service';
+import { DbUserModelBizService } from '@/shared/MongoDB/services/user/db-user-model-biz.service';
+import { DbRequestLogService } from '@/shared/MongoDB/services/request-log/db-request-log.service';
 
 const serviceList = [
-  AccountModelService,
-  AccountModelBizService,
+  DbAccountModelService,
+  DbAccountModelBizService,
 
-  UserModelService,
-  UserModelBizService,
+  DbUserModelService,
+  DbUserModelBizService,
 
-  RequestLogService,
+  DbRequestLogService,
 ];
 
 @Module({
@@ -28,9 +28,7 @@ const serviceList = [
   exports: [...serviceList],
 })
 export class MongodbModule implements OnModuleInit {
-  constructor(
-    private readonly configService: ConfigService,
-  ) {}
+  constructor(private readonly configService: ConfigService) {}
 
   onModuleInit(): any {
     this.initSchemaList();

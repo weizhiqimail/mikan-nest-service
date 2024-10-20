@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { UserModelService } from '@/shared/MongoDB/services/user/user-model.service';
+import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model.service';
 import {
   CreateUserInfoDto,
   QueryUserInfoItemByIdDto,
@@ -10,10 +10,14 @@ import {
 
 @Injectable()
 export class UserInfoService {
-  constructor(private readonly userModelService: UserModelService) {}
+  constructor(private readonly userModelService: DbUserModelService) {}
 
   async queryUserInfoList(queryParams: QueryUserInfoListDto) {
-    return this.userModelService.queryList(queryParams);
+    return this.userModelService.queryList({
+      queryParams: queryParams,
+      sortField: 'updatedAt',
+      sortType: -1,
+    });
   }
 
   async queryUserInfoDetailById(queryParams: QueryUserInfoItemByIdDto) {

@@ -11,7 +11,7 @@ import { RequestValidationPipe } from '@/pipes/request-validation.pipe';
 import { AccountModule } from '@/modules/account/account.module';
 import { AuthModule } from '@/modules/auth/auth.module';
 import { MediaModule } from '@/modules/media/media.module';
-import { SysModule } from '@/modules/sys/sys.config';
+import { SysModule } from '@/modules/sys/sys.module';
 import { UserModule } from '@/modules/user/user.module';
 import { SharedModule } from '@/shared/shared.module';
 import { RequestLoggerMiddleware } from '@/middlewares/request-logger.middleware';
@@ -38,10 +38,6 @@ import { RequestLoggerMiddleware } from '@/middlewares/request-logger.middleware
       provide: APP_INTERCEPTOR,
       useClass: TransformInterceptor,
     },
-    // {
-    //   provide: APP_INTERCEPTOR,
-    //   useClass: LoggerInterceptor,
-    // },
     {
       provide: APP_PIPE,
       useClass: RequestValidationPipe,
