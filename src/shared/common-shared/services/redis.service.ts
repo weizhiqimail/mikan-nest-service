@@ -17,9 +17,12 @@ export class RedisService {
   // 设置键值
   async set(
     key: string,
-    value: string,
+    value: any,
     expirationInSeconds?: number,
   ): Promise<string> {
+    if (typeof value === 'object') {
+      value = JSON.stringify(value);
+    }
     if (expirationInSeconds) {
       return this.client.set(key, value, 'EX', expirationInSeconds);
     }

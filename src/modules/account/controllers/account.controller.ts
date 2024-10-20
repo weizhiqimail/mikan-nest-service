@@ -1,15 +1,13 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Headers } from '@nestjs/common';
 
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { ConfigService } from '@nestjs/config';
-import { AccountLoginDto } from '@/modules/account/controllers/account.controller.dto';
+import { ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AccountLoginDto, AccountResetPasswordDto } from '@/modules/account/controllers/account.controller.dto';
 import { AccountRouteService } from '@/modules/account/services/account.route.service';
 
 @ApiTags('账号模块')
 @Controller(`/api/v1/account`)
 export class AccountController {
   constructor(
-    private readonly configService: ConfigService,
     private readonly accountRouteService: AccountRouteService,
   ) {}
 
@@ -18,16 +16,23 @@ export class AccountController {
   async accountLogin(@Body() dto: AccountLoginDto) {
     return this.accountRouteService.accountLogin(dto);
   }
-
-  @ApiOperation({ summary: '用户退出登录' })
+  
   @Post('/logout')
-  async accountLogout() {
-    throw new BadRequestException('退出登录失败');
+  @ApiOperation({ summary: '用户退出登录' })
+  @ApiHeader({
+    name: 'auth-token',
+    description: '用户token',
+    required: false,
+  })
+  async accountLogout(@Headers('auth-token') authToken: string) {
+    return this.accountRouteService.accountLogout(authToken);
   }
 
   @ApiOperation({ summary: '重置密码' })
   @Post('/reset-password')
-  async accountResetPassword() {}
+  async accountResetPassword(@Body() dto: AccountResetPasswordDto) {
+    return this.accountRouteService.accountResetPassword(dto);
+  }
 
   @ApiOperation({ summary: '验证用户token' })
   @Post('/verify-token')

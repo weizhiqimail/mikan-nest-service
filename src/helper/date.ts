@@ -48,3 +48,35 @@ export function formatDateTimeWithMilliseconds(
 ) {
   return moment(date).format(format);
 }
+
+
+export function isValidDate(date: any) {
+  const dateStr = new Date(date).toString();
+  return dateStr !== 'Invalid Date';
+}
+
+// 判断是否为标准 2020-01-01 日期格式
+export function isStandardDate(date = '') {
+  const regexp = /(^\d{4})-(\d{2})-(\d{2}$)/gi;
+  const match = regexp.exec(date);
+  if (!match) {
+    return false;
+  }
+  const [, year, month, day] = match;
+  const newYear = Number(year);
+  const newMonth = Number(month);
+  const newDay = Number(day);
+  if (newYear < 1900 || newYear > 2100) {
+    return false;
+  }
+  if (newMonth < 0 || newMonth > 12) {
+    return false;
+  }
+  if (newDay < 0 || newDay > 31) {
+    return false;
+  }
+  if (newMonth === 2 && newDay > 29) {
+    return false;
+  }
+  return true;
+}
