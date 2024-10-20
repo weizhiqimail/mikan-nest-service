@@ -11,11 +11,13 @@ export class RequestLoggerMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
     const startTime = Date.now();
     const originalJson = res.json.bind(res);
-    const requestId = generateUUID(); // 生成唯一的 requestId
+    const requestId = generateUUID();
 
     res.json = (body: any) => {
-      res.locals.responseData = body; // 将 responseData 存储在 res.locals 中
-      return originalJson(body); // 调用原始的 res.json 方法继续处理
+      // 将 responseData 存储在 res.locals 中
+      res.locals.responseData = body;
+      // 调用原始的 res.json 方法继续处理
+      return originalJson(body);
     };
 
     req['requestId'] = requestId;
