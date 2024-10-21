@@ -1,35 +1,20 @@
-import {
-  LoggerService as InnerLoggerService,
-  Injectable,
-} from '@nestjs/common';
+import { Injectable, LoggerService as InnerLoggerService } from '@nestjs/common';
 import * as winston from 'winston';
 import 'winston-daily-rotate-file';
-import WinstonTransport from 'winston-transport';
-
-class LoggerTransportService extends WinstonTransport {
-  constructor() {
-    super();
-  }
-
-  log(info: any, next: () => void): any {
-    setImmediate(() => {
-      this.emit('logged', info);
-    });
-    next();
-  }
-}
 
 @Injectable()
-export class LoggerService implements InnerLoggerService {
+export class FsLoggerService implements InnerLoggerService {
   private logger: winston.Logger;
-
+  
   constructor() {
     this.logger = winston.createLogger({
       levels: winston.config.npm.levels,
       format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.label(),
-        winston.format.json(),
+        winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+        winston.format.colorize(), // 默认给 level（如 info, error 等）添加颜色
+        winston.format.printf(({ timestamp, level, message, context }) => {
+          return `${timestamp} ${level}: ${message}${context ? ' [' + context + ']' : ''}`;
+        })
       ),
       transports: [
         new winston.transports.Console(),
@@ -41,27 +26,26 @@ export class LoggerService implements InnerLoggerService {
           maxFiles: '30d',
           maxSize: '20d',
         }),
-        new LoggerTransportService(),
       ],
     });
   }
-
+  
   log(message: string, context?: string) {
     this.logger.info({ message, context });
   }
-
+  
   error(message: string, context?: string) {
     this.logger.error({ message, context });
   }
-
+  
   warn(message: string, context?: string) {
     this.logger.warn({ message, context });
   }
-
+  
   debug(message: string, context?: string) {
     this.logger.debug({ message, context });
   }
-
+  
   verbose(message: string, context?: string) {
     this.logger.verbose({ message, context });
   }
