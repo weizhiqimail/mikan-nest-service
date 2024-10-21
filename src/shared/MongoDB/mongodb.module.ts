@@ -11,6 +11,7 @@ import { DbAccountModelBizService } from '@/shared/MongoDB/services/account/db-a
 import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model.service';
 import { DbUserModelBizService } from '@/shared/MongoDB/services/user/db-user-model-biz.service';
 import { DbRequestLogService } from '@/shared/MongoDB/services/request-log/db-request-log.service';
+import { DbIconModelService } from '@/shared/MongoDB/services/icon/db-icon.service';
 
 const serviceList = [
   DbAccountModelService,
@@ -20,6 +21,8 @@ const serviceList = [
   DbUserModelBizService,
 
   DbRequestLogService,
+  
+  DbIconModelService,
 ];
 
 @Module({

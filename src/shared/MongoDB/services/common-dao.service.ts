@@ -14,7 +14,7 @@ export class CommonDaoService {
    */
 
   async queryList(
-    options: CommonDaoQueryListOptions,
+    options?: CommonDaoQueryListOptions,
   ): Promise<CommonPromiseRes> {
     const {
       queryParams = {},
@@ -22,11 +22,11 @@ export class CommonDaoService {
       pageSize = 20,
       sortField = '',
       sortType = -1,
-    } = options;
+    } = options || {};
 
-    const $sort: Record<any, any> = {};
+    let $sort: Record<any, any> | null = null;
     if (sortField) {
-      $sort[sortField] = sortType;
+      $sort = { [sortField]: sortField };
       if (sortType === 1 || sortType === -1) {
         $sort[sortType] = sortType;
       } else {
@@ -37,14 +37,14 @@ export class CommonDaoService {
     return daoPromisifyListTotal(
       this.model.aggregate([
         { $match: queryParams },
-        { $sort },
+        $sort ? { $sort } : null,
         {
           $facet: {
             total: [{ $count: 'count' }],
             data: [{ $skip: (pageNum - 1) * pageSize }, { $limit: pageSize }],
           },
         },
-      ]),
+      ].filter(Boolean)),
       { model: this.model },
     );
   }

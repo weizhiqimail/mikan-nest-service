@@ -1,12 +1,12 @@
 import { formatDateTime } from '@/helper/date';
 import { ISchemaConfig } from '@/shared/MongoDB/schemas/types';
 
-export const MenuSchemaConfig: ISchemaConfig = {
-  moduleName: 'menus',
-  formatFn: formatMenuModelData,
+export const IconSchemaConfig: ISchemaConfig = {
+  moduleName: 'icons',
+  formatFn: formatIconModelData,
 };
 
-export function formatMenuModelData(ret) {
+export function formatIconModelData(ret) {
   ret.createdAt = formatDateTime(ret.createdAt);
   ret.updatedAt = formatDateTime(ret.updatedAt);
   ret.id = ret._id.toString();
