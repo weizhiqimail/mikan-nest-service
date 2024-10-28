@@ -16,12 +16,12 @@ export const MenuSchema = new Schema<MenuModelTypes.Model>(
     permissionId: {
       type: Schema.Types.ObjectId,
       ref: 'permissions',
-      required: true,
+      required: false,
     },
     clientId: {
       type: Schema.Types.ObjectId,
       ref: 'clients',
-      required: true,
+      required: false,
     },
     status: {
       type: String,

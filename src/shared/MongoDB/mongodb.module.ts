@@ -12,6 +12,8 @@ import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model
 import { DbUserModelBizService } from '@/shared/MongoDB/services/user/db-user-model-biz.service';
 import { DbRequestLogService } from '@/shared/MongoDB/services/request-log/db-request-log.service';
 import { DbIconModelService } from '@/shared/MongoDB/services/icon/db-icon.service';
+import { DbSinglePermissionService } from '@/shared/MongoDB/services/single-permission/db-single-permission.service';
+import { DbPermissionGroupService } from '@/shared/MongoDB/services/permission-group/db-single-permission.service';
 
 const serviceList = [
   DbAccountModelService,
@@ -20,8 +22,11 @@ const serviceList = [
   DbUserModelService,
   DbUserModelBizService,
 
+  DbSinglePermissionService,
+  DbPermissionGroupService,
+
   DbRequestLogService,
-  
+
   DbIconModelService,
 ];
 

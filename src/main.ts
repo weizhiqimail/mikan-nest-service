@@ -22,7 +22,10 @@ async function bootstrap() {
 
     const serverUrl = `http://localhost:${PORT}`;
     fsLoggerService.log(`server is running at ${serverUrl}`, 'main.ts');
-    fsLoggerService.log(`api docs is running at ${serverUrl}/api-docs`, 'main.ts');
+    fsLoggerService.log(
+      `api docs is running at ${serverUrl}/api-docs`,
+      'main.ts',
+    );
     return resolve(true);
   });
 }

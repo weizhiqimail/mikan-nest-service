@@ -4,12 +4,8 @@ import { DbIconModelService } from '@/shared/MongoDB/services/icon/db-icon.servi
 
 @Injectable()
 export class IconService {
-  
-  constructor(
-    private readonly dbIconModelService: DbIconModelService
-  ) {
-  }
-  
+  constructor(private readonly dbIconModelService: DbIconModelService) {}
+
   queryIconList() {
     return this.dbIconModelService.queryList();
   }

@@ -1,0 +1,150 @@
+依据这个 SinglePermission.ts 的 schema ，nest.js 对应的增删改查，查询要求使用 @Get('/list') 和 @Get('/itemById')，并在每一个 controller 的方法里，使用 @nestjs/swagger 里对应的 ApiOperation介绍接口，然后在 service 里调用DbSinglePermissionService，controller 的结构参考 user-info.controller.ts， service 的结构参考 user-info.service.ts。要求生成对应的 controller.ts service.ts
+
+// schema SinglePermission.ts
+import { Schema, model } from 'mongoose';
+
+import {
+  ISinglePermissionType,
+  SinglePermissionModelTypes,
+} from '@/shared/MongoDB/schemas/SinglePermission/types';
+import { UserSchemaConfig } from '@/shared/MongoDB/schemas/User/config';
+import {
+  formatSinglePermissionModelData,
+  SinglePermissionSchemaConfig,
+} from '@/shared/MongoDB/schemas/SinglePermission/config';
+
+export const SinglePermissionSchema =
+  new Schema<SinglePermissionModelTypes.Model>(
+    {
+      name: { type: String, required: true },
+      code: { type: String, required: true },
+      description: { type: String, default: '' },
+      type: {
+        type: String,
+        required: true,
+        enum: Object.values(ISinglePermissionType),
+      },
+      enable: { type: Boolean, default: false },
+      creatorId: {
+        type: Schema.Types.ObjectId,
+        ref: UserSchemaConfig.moduleName,
+        required: true,
+      },
+      updaterId: {
+        type: Schema.Types.ObjectId,
+        ref: UserSchemaConfig.moduleName,
+        required: true,
+      },
+      remark: { type: String, default: '' },
+    },
+    { timestamps: true },
+  );
+
+// 设置 toJSON 和 toObject 的格式化操作
+SinglePermissionSchema.set('toJSON', {
+  virtuals: true,
+  transform: function (doc, ret) {
+    return formatSinglePermissionModelData(ret);
+  },
+});
+SinglePermissionSchema.set('toObject', {
+  virtuals: true,
+  transform: function (doc, ret) {
+    return formatSinglePermissionModelData(ret);
+  },
+});
+
+const SinglePermissionModel = model<SinglePermissionModelTypes.Model>(
+  SinglePermissionSchemaConfig.moduleName,
+  SinglePermissionSchema,
+);
+
+export default SinglePermissionModel;
+
+// user-info.service.ts
+import { Injectable } from '@nestjs/common';
+
+import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model.service';
+import {
+  CreateUserInfoDto,
+  QueryUserInfoItemByIdDto,
+  QueryUserInfoListDto,
+  UpdateUserInfoDto,
+} from '@/modules/user/user-info/controllers/user-info.controller.dto';
+
+@Injectable()
+export class UserInfoService {
+  constructor(private readonly userModelService: DbUserModelService) {}
+
+  async queryUserInfoList(queryParams: QueryUserInfoListDto) {
+    return this.userModelService.queryList({
+      queryParams: queryParams,
+      sortField: 'updatedAt',
+      sortType: -1,
+    });
+  }
+
+  async queryUserInfoDetailById(queryParams: QueryUserInfoItemByIdDto) {
+    return this.userModelService.queryById(queryParams.id);
+  }
+
+  async createUserInfo(bodyParams: CreateUserInfoDto) {
+    return this.userModelService.create(bodyParams);
+  }
+
+  async updateUserInfoById(id: string, bodyParams: UpdateUserInfoDto) {
+    return this.userModelService.updateById(id, bodyParams);
+  }
+
+  async removeUserInfoById(id: string) {
+    return this.userModelService.removeById(id);
+  }
+}
+
+// user-info.controller.ts
+import { Controller, Post, Get, Query, Body } from '@nestjs/common';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
+
+import { UserInfoService } from '@/modules/user/user-info/services/user-info.service';
+import {
+  CreateUserInfoDto,
+  QueryUserInfoItemByIdDto,
+  QueryUserInfoListDto,
+  UpdateUserInfoDto,
+} from '@/modules/user/user-info/controllers/user-info.controller.dto';
+
+@ApiTags('用户信息模块')
+@Controller('/api/v1/user/userInfo')
+export class UserInfoController {
+  constructor(private readonly userInfoService: UserInfoService) {}
+
+  @ApiOperation({ summary: '查询用户列表' })
+  @Get('/list')
+  async queryUserInfoList(@Query() queryDto: QueryUserInfoListDto) {
+    return this.userInfoService.queryUserInfoList(queryDto);
+  }
+
+  @ApiOperation({ summary: '通过 id 查询用户详情' })
+  @Get('/itemById')
+  async queryUserInfoItem(@Query() queryDto: QueryUserInfoItemByIdDto) {
+    return this.userInfoService.queryUserInfoDetailById(queryDto);
+  }
+
+  @ApiOperation({ summary: '创建用户' })
+  @Post('/create')
+  async createUserInfo(@Body() bodyDto: CreateUserInfoDto) {
+    return this.userInfoService.createUserInfo(bodyDto);
+  }
+
+  @ApiOperation({ summary: '更新用户信息' })
+  @Post('/updateById')
+  async updateUserInfo(@Body() bodyDto: UpdateUserInfoDto) {
+    return this.userInfoService.updateUserInfoById(bodyDto.id, bodyDto);
+  }
+
+  @ApiOperation({ summary: '删除用户' })
+  @Post('/removeById')
+  async removeUserInfo(@Body() queryDto: QueryUserInfoItemByIdDto) {
+    return this.userInfoService.removeUserInfoById(queryDto.id);
+  }
+}

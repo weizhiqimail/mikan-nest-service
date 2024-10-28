@@ -1,4 +1,3 @@
-// src/database/schemas/SinglePermission/types.ts
 import { Document, Types } from 'mongoose';
 
 // 权限类型

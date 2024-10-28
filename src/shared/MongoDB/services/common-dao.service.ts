@@ -35,16 +35,18 @@ export class CommonDaoService {
     }
 
     return daoPromisifyListTotal(
-      this.model.aggregate([
-        { $match: queryParams },
-        $sort ? { $sort } : null,
-        {
-          $facet: {
-            total: [{ $count: 'count' }],
-            data: [{ $skip: (pageNum - 1) * pageSize }, { $limit: pageSize }],
+      this.model.aggregate(
+        [
+          { $match: queryParams },
+          $sort ? { $sort } : null,
+          {
+            $facet: {
+              total: [{ $count: 'count' }],
+              data: [{ $skip: (pageNum - 1) * pageSize }, { $limit: pageSize }],
+            },
           },
-        },
-      ].filter(Boolean)),
+        ].filter(Boolean),
+      ),
       { model: this.model },
     );
   }

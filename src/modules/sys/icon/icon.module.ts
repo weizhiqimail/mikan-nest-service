@@ -7,6 +7,6 @@ import { IconController } from '@/modules/sys/icon/controllers/icon.controller';
 @Module({
   imports: [SharedModule],
   providers: [IconService],
-  controllers: [IconController]
+  controllers: [IconController],
 })
 export class IconModule {}

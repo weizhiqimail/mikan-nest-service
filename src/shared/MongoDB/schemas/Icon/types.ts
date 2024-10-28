@@ -1,4 +1,3 @@
-
 export enum IconType {
   AntdOutlined = 'AntdOutlined',
   AntdFilled = 'AntdFilled',
