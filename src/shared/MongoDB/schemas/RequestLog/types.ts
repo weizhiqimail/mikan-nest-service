@@ -10,7 +10,6 @@ export enum ILogLevelEnum {
 export declare namespace RequestLogModelTypes {
   interface Model extends Document {
     requestId: string;
-    timestamp: Date;
     level: ILogLevelEnum;
     headers?: any;
     query?: any;

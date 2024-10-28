@@ -3,6 +3,7 @@ import { Model } from 'mongoose';
 import { CommonPromiseRes } from '@/types/http';
 import { daoPromisify, daoPromisifyListTotal } from '@/shared/MongoDB/utils';
 import { CommonDaoQueryListOptions } from '@/shared/MongoDB/services/types';
+import { MongodbExecuteException } from '@/exceptions/mongodb-execute.exception';
 
 export class CommonDaoService {
   constructor(private readonly model: typeof Model) {
@@ -34,7 +35,7 @@ export class CommonDaoService {
       }
     }
 
-    return daoPromisifyListTotal(
+    const result = await daoPromisifyListTotal(
       this.model.aggregate(
         [
           { $match: queryParams },
@@ -49,6 +50,10 @@ export class CommonDaoService {
       ),
       { model: this.model },
     );
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 
   async queryItemByConditions(
@@ -57,17 +62,33 @@ export class CommonDaoService {
     if (Object.keys(params).length === 0) {
       return { success: false, errorMsg: '查询条件不能为空' };
     }
-    return daoPromisify(this.model.findOne(params).lean(), {
+    const result = await daoPromisify(this.model.findOne(params).lean(), {
       model: this.model,
     });
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 
   async queryById(id: string): Promise<CommonPromiseRes> {
-    return daoPromisify(this.model.findById(id), { model: this.model });
+    const result = await daoPromisify(this.model.findById(id), {
+      model: this.model,
+    });
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 
   async create(params: Record<any, any>): Promise<CommonPromiseRes> {
-    return daoPromisify(this.model.create(params), { model: this.model });
+    const result = await daoPromisify(this.model.create(params), {
+      model: this.model,
+    });
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 
   async updateById(
@@ -75,29 +96,53 @@ export class CommonDaoService {
     params: Record<any, any>,
   ): Promise<CommonPromiseRes> {
     delete params.id;
-    return daoPromisify(this.model.updateOne({ _id: id }, { $set: params }), {
-      model: this.model,
-    });
+    const result = await daoPromisify(
+      this.model.updateOne({ _id: id }, { $set: params }),
+      {
+        model: this.model,
+      },
+    );
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 
   async updateByIds(ids: Array<string>, params: Record<any, any>) {
-    return daoPromisify(
+    const result = await daoPromisify(
       this.model.updateMany({ _id: { $in: ids } }, { $set: params }),
       {
         model: this.model,
       },
     );
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 
   async removeById(id: string): Promise<CommonPromiseRes> {
-    return daoPromisify(this.model.updateMany({ _id: id }), {
+    const result = await daoPromisify(this.model.updateMany({ _id: id }), {
       model: this.model,
     });
+
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 
   async removeByIds(ids: Array<string>): Promise<CommonPromiseRes> {
-    return daoPromisify(this.model.deleteMany({ _id: { $in: ids } }), {
-      model: this.model,
-    });
+    const result = await daoPromisify(
+      this.model.deleteMany({ _id: { $in: ids } }),
+      {
+        model: this.model,
+      },
+    );
+
+    if (result.success) {
+      return result;
+    }
+    throw new MongodbExecuteException('MongoDB 执行失败');
   }
 }

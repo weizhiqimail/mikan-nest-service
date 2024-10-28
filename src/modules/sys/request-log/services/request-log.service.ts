@@ -74,8 +74,6 @@ export class RequestLogService {
       queryParams: queryConditions,
       pageNum: queryDto.pageNum || 1,
       pageSize: queryDto.pageSize || 20,
-      sortField: queryDto.sortField || 'timestamp',
-      sortType: queryDto.sortType || -1,
     });
   }
 }

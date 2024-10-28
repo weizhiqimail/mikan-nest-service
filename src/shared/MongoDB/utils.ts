@@ -60,6 +60,7 @@ export function daoPromisifyListTotal(
         });
       })
       .catch((error) => {
+        console.log('error', error);
         return resolve({ success: false, error });
       });
   });
