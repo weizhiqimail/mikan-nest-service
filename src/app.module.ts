@@ -15,6 +15,7 @@ import { SysModule } from '@/modules/sys/sys.module';
 import { UserModule } from '@/modules/user/user.module';
 import { SharedModule } from '@/shared/shared.module';
 import { RequestLoggerMiddleware } from '@/middlewares/request-logger.middleware';
+import { LanguagesModule } from './modules/languages/languages.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { RequestLoggerMiddleware } from '@/middlewares/request-logger.middleware
     SysModule,
     UserModule,
     SharedModule,
+    LanguagesModule,
   ],
   providers: [
     {

@@ -14,6 +14,8 @@ import { DbRequestLogService } from '@/shared/MongoDB/services/request-log/db-re
 import { DbIconModelService } from '@/shared/MongoDB/services/icon/db-icon.service';
 import { DbSinglePermissionService } from '@/shared/MongoDB/services/single-permission/db-single-permission.service';
 import { DbPermissionGroupService } from '@/shared/MongoDB/services/permission-group/db-single-permission.service';
+import { DbLanguageWordService } from '@/shared/MongoDB/services/language/db-language-word.service';
+import { DbLanguageSentenceService } from '@/shared/MongoDB/services/language/db-language-sentence.service';
 
 const serviceList = [
   DbAccountModelService,
@@ -28,6 +30,9 @@ const serviceList = [
   DbRequestLogService,
 
   DbIconModelService,
+
+  DbLanguageWordService,
+  DbLanguageSentenceService,
 ];
 
 @Module({

@@ -68,9 +68,9 @@ export function daoPromisifyListTotal(
 
 function formatModelItemData(ret: Record<any, any>, modelName: string) {
   const schemaConfigList = schemaList.map((item) => item.config);
-
   const schemaConfigMap = transformListToMap(schemaConfigList, 'moduleName');
   const schemaConfig: ISchemaConfig = schemaConfigMap[modelName];
+
   if (schemaConfig) {
     return schemaConfig.formatFn(ret);
   }

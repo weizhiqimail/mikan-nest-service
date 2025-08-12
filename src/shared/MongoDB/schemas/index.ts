@@ -37,6 +37,16 @@ import RequestLogModel, {
   RequestLogSchema,
 } from '@/shared/MongoDB/schemas/RequestLog';
 
+import LanguageSentenceModel, {
+  LanguageSentenceSchema,
+} from '@/shared/MongoDB/schemas/LanguageSentence';
+import { LanguageSentenceSchemaConfig } from '@/shared/MongoDB/schemas/LanguageSentence/config';
+
+import { LanguageWordSchemaConfig } from '@/shared/MongoDB/schemas/LanguageWord/config';
+import LanguageWordModel, {
+  LanguageWordSchema,
+} from '@/shared/MongoDB/schemas/LanguageWord';
+
 export interface ISchemaItem<T = any> {
   config: ISchemaConfig;
   schema: Schema;
@@ -87,5 +97,15 @@ export const schemaList: Array<ISchemaItem> = [
     config: RequestLogSchemaConfig,
     schema: RequestLogSchema,
     model: RequestLogModel,
+  },
+  {
+    config: LanguageSentenceSchemaConfig,
+    schema: LanguageSentenceSchema,
+    model: LanguageSentenceModel,
+  },
+  {
+    config: LanguageWordSchemaConfig,
+    schema: LanguageWordSchema,
+    model: LanguageWordModel,
   },
 ];
