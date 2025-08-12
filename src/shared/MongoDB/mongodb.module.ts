@@ -49,7 +49,7 @@ export class MongodbModule implements OnModuleInit {
   }
 
   initSchemaList() {
-    const schemasDirPath = path.resolve('@/shared/MongoDB/schemas/*/index.ts');
+    const schemasDirPath = path.resolve('@/shared/MongoDB/schemas/*/schema.ts');
 
     globSync(schemasDirPath).forEach((schema) => {
       import(schema);

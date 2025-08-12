@@ -1,42 +1,13 @@
-import { Schema, model } from 'mongoose';
-
-import {
-  LanguageSentenceSchemaConfig,
-  formatLanguageSentenceModelData,
-} from './config';
-import { LanguageSentenceModelTypes } from '@/shared/MongoDB/schemas/LanguageSentence/types';
-
-export const LanguageSentenceSchema = new Schema(
-  {
-    sentence: { type: String, default: '' },
-    definition: { type: String, default: '' },
-    words: [
-      {
-        type: Schema.Types.ObjectId,
-        description: '单词',
-      },
-    ],
-    remark: { type: String, default: '' },
-  },
-  { timestamps: true },
-);
-
-LanguageSentenceSchema.set('toJSON', {
-  virtuals: true,
-  transform: function (doc, ret) {
-    return formatLanguageSentenceModelData(ret);
-  },
-});
-LanguageSentenceSchema.set('toObject', {
-  virtuals: true,
-  transform: function (doc, ret) {
-    return formatLanguageSentenceModelData(ret);
-  },
-});
-
-const LanguageSentenceModel = model<LanguageSentenceModelTypes.Model>(
-  LanguageSentenceSchemaConfig.moduleName,
+import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
+import { LanguageSentenceSchemaConfig } from '@/shared/MongoDB/schemas/LanguageSentence/config';
+import LanguageSentenceModel, {
   LanguageSentenceSchema,
-);
+} from '@/shared/MongoDB/schemas/LanguageSentence/schema';
 
-export default LanguageSentenceModel;
+const LanguageSentenceSchemaItem: ISchemaItem = {
+  config: LanguageSentenceSchemaConfig,
+  schema: LanguageSentenceSchema,
+  model: LanguageSentenceModel,
+};
+
+export default LanguageSentenceSchemaItem;
