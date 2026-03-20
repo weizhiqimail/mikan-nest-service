@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { SinglePermissionSchemaConfig } from '@/shared/MongoDB/schemas/SinglePermission/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { SinglePermissionSchemaConfig } from '@/shared/mongodb/schemas/SinglePermission/config';
 import SinglePermissionModel, {
   SinglePermissionSchema,
-} from '@/shared/MongoDB/schemas/SinglePermission/schema';
+} from '@/shared/mongodb/schemas/SinglePermission/schema';
 
 const SinglePermissionSchemaItem: ISchemaItem = {
   config: SinglePermissionSchemaConfig,

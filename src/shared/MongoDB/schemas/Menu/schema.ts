@@ -2,11 +2,11 @@ import { Schema, model } from 'mongoose';
 import {
   IMenuStatus,
   MenuModelTypes,
-} from '@/shared/MongoDB/schemas/Menu/types';
+} from '@/shared/mongodb/schemas/Menu/types';
 import {
   formatMenuModelData,
   MenuSchemaConfig,
-} from '@/shared/MongoDB/schemas/Menu/config';
+} from '@/shared/mongodb/schemas/Menu/config';
 
 export const MenuSchema = new Schema<MenuModelTypes.Model>(
   {

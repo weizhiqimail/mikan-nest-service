@@ -2,11 +2,11 @@ import { Schema, model } from 'mongoose';
 import {
   ILogLevelEnum,
   RequestLogModelTypes,
-} from '@/shared/MongoDB/schemas/RequestLog/types';
+} from '@/shared/mongodb/schemas/RequestLog/types';
 import {
   formatRequestLogModelData,
   RequestLogSchemaConfig,
-} from '@/shared/MongoDB/schemas/RequestLog/config';
+} from '@/shared/mongodb/schemas/RequestLog/config';
 
 export const RequestLogSchema = new Schema<RequestLogModelTypes.Model>(
   {

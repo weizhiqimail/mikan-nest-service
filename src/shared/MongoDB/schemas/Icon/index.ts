@@ -1,6 +1,6 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { IconSchemaConfig } from '@/shared/MongoDB/schemas/Icon/config';
-import IconModel, { IconSchema } from '@/shared/MongoDB/schemas/Icon/schema';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { IconSchemaConfig } from '@/shared/mongodb/schemas/Icon/config';
+import IconModel, { IconSchema } from '@/shared/mongodb/schemas/Icon/schema';
 
 const IconSchemaItem: ISchemaItem = {
   config: IconSchemaConfig,

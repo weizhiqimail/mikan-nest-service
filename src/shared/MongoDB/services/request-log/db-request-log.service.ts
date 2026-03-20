@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-import { CommonDaoService } from '@/shared/MongoDB/services/common-dao.service';
-import RequestLogModel from '@/shared/MongoDB/schemas/RequestLog/schema';
-import { ILogLevelEnum } from '@/shared/MongoDB/schemas/RequestLog/types';
+import { CommonDaoService } from '@/shared/mongodb/services/common-dao.service';
+import RequestLogModel from '@/shared/mongodb/schemas/RequestLog/schema';
+import { ILogLevelEnum } from '@/shared/mongodb/schemas/RequestLog/types';
 
 interface CreateHttpRequestLogOptions {
   duration: number;

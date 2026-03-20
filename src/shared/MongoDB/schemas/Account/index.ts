@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { AccountSchemaConfig } from '@/shared/MongoDB/schemas/Account/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { AccountSchemaConfig } from '@/shared/mongodb/schemas/Account/config';
 import AccountModel, {
   AccountSchema,
-} from '@/shared/MongoDB/schemas/Account/schema';
+} from '@/shared/mongodb/schemas/Account/schema';
 
 const AccountSchemaItem: ISchemaItem = {
   config: AccountSchemaConfig,

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { CommonDaoService } from '@/shared/MongoDB/services/common-dao.service';
-import UserModel from '@/shared/MongoDB/schemas/User/schema';
+import { CommonDaoService } from '@/shared/mongodb/services/common-dao.service';
+import UserModel from '@/shared/mongodb/schemas/User/schema';
 
 @Injectable()
 export class DbUserModelBizService extends CommonDaoService {

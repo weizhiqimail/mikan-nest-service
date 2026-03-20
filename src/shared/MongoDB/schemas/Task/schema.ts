@@ -3,12 +3,12 @@ import { Schema, model } from 'mongoose';
 import {
   ISysTaskStatus,
   TaskModelTypes,
-} from '@/shared/MongoDB/schemas/Task/types';
+} from '@/shared/mongodb/schemas/Task/types';
 import {
   formatTaskModelData,
   TaskSchemaConfig,
-} from '@/shared/MongoDB/schemas/Task/config';
-import { UserSchemaConfig } from '@/shared/MongoDB/schemas/User/config';
+} from '@/shared/mongodb/schemas/Task/config';
+import { UserSchemaConfig } from '@/shared/mongodb/schemas/User/config';
 
 export const TaskSchema = new Schema(
   {

@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { ClientSchemaConfig } from '@/shared/MongoDB/schemas/Client/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { ClientSchemaConfig } from '@/shared/mongodb/schemas/Client/config';
 import ClientModel, {
   ClientSchema,
-} from '@/shared/MongoDB/schemas/Client/schema';
+} from '@/shared/mongodb/schemas/Client/schema';
 
 const ClientSchemaItem: ISchemaItem = {
   config: ClientSchemaConfig,

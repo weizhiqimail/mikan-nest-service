@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { LanguageWordSchemaConfig } from '@/shared/MongoDB/schemas/LanguageWord/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { LanguageWordSchemaConfig } from '@/shared/mongodb/schemas/LanguageWord/config';
 import LanguageWordModel, {
   LanguageWordSchema,
-} from '@/shared/MongoDB/schemas/LanguageWord/schema';
+} from '@/shared/mongodb/schemas/LanguageWord/schema';
 
 const LanguageWordSchemaItem: ISchemaItem = {
   config: LanguageWordSchemaConfig,

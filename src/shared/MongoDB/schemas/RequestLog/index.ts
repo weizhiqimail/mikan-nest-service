@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { RequestLogSchemaConfig } from '@/shared/MongoDB/schemas/RequestLog/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { RequestLogSchemaConfig } from '@/shared/mongodb/schemas/RequestLog/config';
 import RequestLogModel, {
   RequestLogSchema,
-} from '@/shared/MongoDB/schemas/RequestLog/schema';
+} from '@/shared/mongodb/schemas/RequestLog/schema';
 
 const RequestLogSchemaItem: ISchemaItem = {
   config: RequestLogSchemaConfig,

@@ -2,7 +2,7 @@ import crypto from 'crypto';
 
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { AccountConfig } from '@/modules/account/account.config';
-import { RedisService } from '@/shared/common-shared/services/redis.service';
+import { RedisService } from '@/shared/shared_common/services/redis.service';
 import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model.service';
 import { DbAccountModelService } from '@/shared/MongoDB/services/account/db-account-model.service';
 

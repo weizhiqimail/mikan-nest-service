@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { PermissionGroupSchemaConfig } from '@/shared/MongoDB/schemas/PermissionGroup/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { PermissionGroupSchemaConfig } from '@/shared/mongodb/schemas/PermissionGroup/config';
 import PermissionGroupModel, {
   PermissionGroupSchema,
-} from '@/shared/MongoDB/schemas/PermissionGroup/schema';
+} from '@/shared/mongodb/schemas/PermissionGroup/schema';
 
 const PermissionGroupSchemaItem: ISchemaItem = {
   config: PermissionGroupSchemaConfig,

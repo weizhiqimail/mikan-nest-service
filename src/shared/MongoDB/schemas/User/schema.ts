@@ -4,11 +4,11 @@ import {
   IUserGenderEnum,
   IUserStatusEnum,
   UserModelTypes,
-} from '@/shared/MongoDB/schemas/User/types';
+} from '@/shared/mongodb/schemas/User/types';
 import {
   formatUserModelData,
   UserSchemaConfig,
-} from '@/shared/MongoDB/schemas/User/config';
+} from '@/shared/mongodb/schemas/User/config';
 
 export const UserSchema = new Schema(
   {

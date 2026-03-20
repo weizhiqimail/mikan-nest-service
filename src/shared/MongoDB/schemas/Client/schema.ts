@@ -3,11 +3,11 @@ import { Schema, model } from 'mongoose';
 import {
   ClientModelTypes,
   IClientStatus,
-} from '@/shared/MongoDB/schemas/Client/types';
+} from '@/shared/mongodb/schemas/Client/types';
 import {
   ClientSchemaConfig,
   formatClientModelData,
-} from '@/shared/MongoDB/schemas/Client/config';
+} from '@/shared/mongodb/schemas/Client/config';
 
 export const ClientSchema = new Schema<ClientModelTypes.Model>(
   {

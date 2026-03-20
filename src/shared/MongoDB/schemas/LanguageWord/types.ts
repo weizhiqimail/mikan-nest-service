@@ -3,7 +3,7 @@ import { Document, Types } from 'mongoose';
 import {
   LanguageWordDifficulty,
   LanguageWordPartOfSpeech,
-} from '@/shared/MongoDB/schemas/LanguageWord/config';
+} from '@/shared/mongodb/schemas/LanguageWord/config';
 
 export declare namespace LanguageWordModelTypes {
   interface Model extends Document {

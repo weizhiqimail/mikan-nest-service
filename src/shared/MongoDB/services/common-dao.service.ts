@@ -1,8 +1,8 @@
 import { Model } from 'mongoose';
 
 import { CommonPromiseRes } from '@/types/http';
-import { daoPromisify, daoPromisifyListTotal } from '@/shared/MongoDB/utils';
-import { CommonDaoQueryListOptions } from '@/shared/MongoDB/services/types';
+import { daoPromisify, daoPromisifyListTotal } from '@/shared/mongodb/utils';
+import { CommonDaoQueryListOptions } from '@/shared/mongodb/services/types';
 import { MongodbExecuteException } from '@/exceptions/mongodb-execute.exception';
 
 export class CommonDaoService {

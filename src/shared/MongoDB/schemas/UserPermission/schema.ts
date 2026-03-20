@@ -3,10 +3,10 @@ import { Schema, model, Types } from 'mongoose';
 import {
   formatUserPermissionModelData,
   UserPermissionSchemaConfig,
-} from '@/shared/MongoDB/schemas/UserPermission/config';
-import { PermissionGroupSchemaConfig } from '@/shared/MongoDB/schemas/PermissionGroup/config';
-import { SinglePermissionSchemaConfig } from '@/shared/MongoDB/schemas/SinglePermission/config';
-import { UserPermissionModelTypes } from '@/shared/MongoDB/schemas/UserPermission/types';
+} from '@/shared/mongodb/schemas/UserPermission/config';
+import { PermissionGroupSchemaConfig } from '@/shared/mongodb/schemas/PermissionGroup/config';
+import { SinglePermissionSchemaConfig } from '@/shared/mongodb/schemas/SinglePermission/config';
+import { UserPermissionModelTypes } from '@/shared/mongodb/schemas/UserPermission/types';
 
 export const UserPermissionSchema = new Schema(
   {

@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 import { AccountSchemaConfig, formatAccountModelData } from './config';
 import { AccountModelTypes, IAccountStatusEnum } from './types';
-import { UserSchemaConfig } from '@/shared/MongoDB/schemas/User/config';
+import { UserSchemaConfig } from '@/shared/mongodb/schemas/User/config';
 
 export const AccountSchema = new Schema(
   {

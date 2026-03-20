@@ -3,12 +3,12 @@ import { Schema, model } from 'mongoose';
 import {
   ISinglePermissionType,
   SinglePermissionModelTypes,
-} from '@/shared/MongoDB/schemas/SinglePermission/types';
-import { UserSchemaConfig } from '@/shared/MongoDB/schemas/User/config';
+} from '@/shared/mongodb/schemas/SinglePermission/types';
+import { UserSchemaConfig } from '@/shared/mongodb/schemas/User/config';
 import {
   formatSinglePermissionModelData,
   SinglePermissionSchemaConfig,
-} from '@/shared/MongoDB/schemas/SinglePermission/config';
+} from '@/shared/mongodb/schemas/SinglePermission/config';
 
 export const SinglePermissionSchema =
   new Schema<SinglePermissionModelTypes.Model>(

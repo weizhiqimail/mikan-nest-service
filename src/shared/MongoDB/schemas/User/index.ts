@@ -1,6 +1,6 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { UserSchemaConfig } from '@/shared/MongoDB/schemas/User/config';
-import UserModel, { UserSchema } from '@/shared/MongoDB/schemas/User/schema';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { UserSchemaConfig } from '@/shared/mongodb/schemas/User/config';
+import UserModel, { UserSchema } from '@/shared/mongodb/schemas/User/schema';
 
 const UserSchemaItem: ISchemaItem = {
   config: UserSchemaConfig,

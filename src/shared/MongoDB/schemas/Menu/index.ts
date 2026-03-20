@@ -1,6 +1,6 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { MenuSchemaConfig } from '@/shared/MongoDB/schemas/Menu/config';
-import MenuModel, { MenuSchema } from '@/shared/MongoDB/schemas/Menu/schema';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { MenuSchemaConfig } from '@/shared/mongodb/schemas/Menu/config';
+import MenuModel, { MenuSchema } from '@/shared/mongodb/schemas/Menu/schema';
 
 const MenuSchemaItem: ISchemaItem = {
   config: MenuSchemaConfig,

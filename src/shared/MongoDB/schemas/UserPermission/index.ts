@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { UserPermissionSchemaConfig } from '@/shared/MongoDB/schemas/UserPermission/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { UserPermissionSchemaConfig } from '@/shared/mongodb/schemas/UserPermission/config';
 import UserPermissionModel, {
   UserPermissionSchema,
-} from '@/shared/MongoDB/schemas/UserPermission/schema';
+} from '@/shared/mongodb/schemas/UserPermission/schema';
 
 const UserPermissionSchemaItem: ISchemaItem = {
   config: UserPermissionSchemaConfig,

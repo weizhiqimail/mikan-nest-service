@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { ISinglePermissionType } from '@/shared/MongoDB/schemas/SinglePermission/types';
+import { ISinglePermissionType } from '@/shared/mongodb/schemas/SinglePermission/types';
 
 export declare namespace PermissionGroupModelTypes {
   // 权限组

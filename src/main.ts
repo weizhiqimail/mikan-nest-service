@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 
 import { AppModule } from '@/app.module';
 import { useMiddlewares } from '@/middlewares';
-import { FsLoggerService } from '@/shared/common-shared/services/fs-logger.service';
+import { FsLoggerService } from '@/shared/shared_common/services/fs-logger.service';
 
 async function bootstrap() {
   return new Promise(async (resolve, reject) => {

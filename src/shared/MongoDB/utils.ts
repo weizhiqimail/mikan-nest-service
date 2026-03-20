@@ -2,8 +2,8 @@ import { Model } from 'mongoose';
 import { transformListToMap } from 'mikan-utils';
 
 import { CommonPromiseRes } from '@/types/http';
-import { ISchemaConfig } from '@/shared/MongoDB/schemas/types';
-import { schemaList } from '@/shared/MongoDB/schemas';
+import { ISchemaConfig } from '@/shared/mongodb/schemas/types';
+import { schemaList } from '@/shared/mongodb/schemas';
 
 interface DaoPromisifyOptions {
   model: typeof Model;

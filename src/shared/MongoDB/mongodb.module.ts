@@ -4,18 +4,18 @@ import mongoose from 'mongoose';
 import { Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { CommonSharedModule } from '@/shared/common-shared/common-shared.module';
+import { CommonSharedModule } from '@/shared/shared_common/common-shared.module';
 
-import { DbAccountModelService } from '@/shared/MongoDB/services/account/db-account-model.service';
-import { DbAccountModelBizService } from '@/shared/MongoDB/services/account/db-account-model-biz.service';
-import { DbUserModelService } from '@/shared/MongoDB/services/user/db-user-model.service';
-import { DbUserModelBizService } from '@/shared/MongoDB/services/user/db-user-model-biz.service';
-import { DbRequestLogService } from '@/shared/MongoDB/services/request-log/db-request-log.service';
-import { DbIconModelService } from '@/shared/MongoDB/services/icon/db-icon.service';
-import { DbSinglePermissionService } from '@/shared/MongoDB/services/single-permission/db-single-permission.service';
-import { DbPermissionGroupService } from '@/shared/MongoDB/services/permission-group/db-single-permission.service';
-import { DbLanguageWordService } from '@/shared/MongoDB/services/language/db-language-word.service';
-import { DbLanguageSentenceService } from '@/shared/MongoDB/services/language/db-language-sentence.service';
+import { DbAccountModelService } from '@/shared/mongodb/services/account/db-account-model.service';
+import { DbAccountModelBizService } from '@/shared/mongodb/services/account/db-account-model-biz.service';
+import { DbUserModelService } from '@/shared/mongodb/services/user/db-user-model.service';
+import { DbUserModelBizService } from '@/shared/mongodb/services/user/db-user-model-biz.service';
+import { DbRequestLogService } from '@/shared/mongodb/services/request-log/db-request-log.service';
+import { DbIconModelService } from '@/shared/mongodb/services/icon/db-icon.service';
+import { DbSinglePermissionService } from '@/shared/mongodb/services/single-permission/db-single-permission.service';
+import { DbPermissionGroupService } from '@/shared/mongodb/services/permission-group/db-single-permission.service';
+import { DbLanguageWordService } from '@/shared/mongodb/services/language/db-language-word.service';
+import { DbLanguageSentenceService } from '@/shared/mongodb/services/language/db-language-sentence.service';
 
 const serviceList = [
   DbAccountModelService,
@@ -49,7 +49,7 @@ export class MongodbModule implements OnModuleInit {
   }
 
   initSchemaList() {
-    const schemasDirPath = path.resolve('@/shared/MongoDB/schemas/*/schema.ts');
+    const schemasDirPath = path.resolve('@/shared/mongodb/schemas/*/schema.ts');
 
     globSync(schemasDirPath).forEach((schema) => {
       import(schema);

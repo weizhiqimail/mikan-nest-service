@@ -3,11 +3,11 @@ import { Schema, model } from 'mongoose';
 import {
   IconModelTypes,
   IconStatus,
-} from '@/shared/MongoDB/schemas/Icon/types';
+} from '@/shared/mongodb/schemas/Icon/types';
 import {
   formatIconModelData,
   IconSchemaConfig,
-} from '@/shared/MongoDB/schemas/Icon/config';
+} from '@/shared/mongodb/schemas/Icon/config';
 
 export const IconSchema = new Schema(
   {

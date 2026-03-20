@@ -1,5 +1,5 @@
 import { formatDateTime } from '@/helper/date';
-import { ISchemaConfig } from '@/shared/MongoDB/schemas/types';
+import { ISchemaConfig } from '@/shared/mongodb/schemas/types';
 
 export const LanguageSentenceSchemaConfig: ISchemaConfig = {
   moduleName: 'language_sentences',

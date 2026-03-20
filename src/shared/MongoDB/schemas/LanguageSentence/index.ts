@@ -1,8 +1,8 @@
-import { ISchemaItem } from '@/shared/MongoDB/schemas/types';
-import { LanguageSentenceSchemaConfig } from '@/shared/MongoDB/schemas/LanguageSentence/config';
+import { ISchemaItem } from '@/shared/mongodb/schemas/types';
+import { LanguageSentenceSchemaConfig } from '@/shared/mongodb/schemas/LanguageSentence/config';
 import LanguageSentenceModel, {
   LanguageSentenceSchema,
-} from '@/shared/MongoDB/schemas/LanguageSentence/schema';
+} from '@/shared/mongodb/schemas/LanguageSentence/schema';
 
 const LanguageSentenceSchemaItem: ISchemaItem = {
   config: LanguageSentenceSchemaConfig,

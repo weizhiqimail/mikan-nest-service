@@ -1,6 +1,6 @@
 // src/database/schemas/SinglePermission/config.ts
 import { formatDateTime } from '@/helper/date';
-import { ISchemaConfig } from '@/shared/MongoDB/schemas/types';
+import { ISchemaConfig } from '@/shared/mongodb/schemas/types';
 
 export const SinglePermissionSchemaConfig: ISchemaConfig = {
   moduleName: 'single_permissions',

@@ -4,7 +4,7 @@ import {
   LanguageSentenceSchemaConfig,
   formatLanguageSentenceModelData,
 } from './config';
-import { LanguageSentenceModelTypes } from '@/shared/MongoDB/schemas/LanguageSentence/types';
+import { LanguageSentenceModelTypes } from '@/shared/mongodb/schemas/LanguageSentence/types';
 
 export const LanguageSentenceSchema = new Schema(
   {
